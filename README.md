@@ -7,4 +7,4 @@ Classify Thai Food image Web by Deep learning.
 ## Install
 
 ## How To
-''' python classify.py '''
+``` python classify.py ```
