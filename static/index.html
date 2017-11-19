@@ -1,20 +1,26 @@
-<html>
+<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="img/logo.png" sizes="16x16" type="image/png">
   <title>What's food</title>
+  <!-- Use bootstrap for grid -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Use Itim font form Google -->
   <link href="https://fonts.googleapis.com/css?family=Itim" rel="stylesheet">
+  <!-- Use Font icon -->
   <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <!-- Get CSS and JS form imgur -->
   <link href="css/imgur.min.css" rel="stylesheet" media="screen">
   <script type="text/javascript" src="js/imgur.min.js"></script>
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
   <div class="container">
+    <!-- Header for logo and name -->
     <div class="row">
       <div class="header col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
         <img src="img/logo.png">
@@ -22,41 +28,55 @@
       </div>
     </div>
 
+    <!-- Main for Upload Image , Image URL , Output -->
     <div class="row">
       <div class="main_container col-sm-10 com-sm-offset-1 col-xs-10 col-xs-offset-1">
+        <!-- Upload image By Drag or Click -->
         <div class="dropzone"></div>
         <div style="font-size: 24px; text-align:center;">or</div>
+        <!-- Use Image url -->
         <div class="input-group">
           <input id ="img_url" type="text" class="form-control" placeholder="Enter Image Url ">
           <span class="input-group-btn">
             <button id="btn_search" class="btn btn-primary" type="button" style="background: #362a0f; border: 1px solid #362a0f;">Go!</button>
           </span>
         </div>
+        <!-- Output -->
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
           <div id="output">
+            <!-- Food name -->
             <div class="output_title"><i class="fa fa-cutlery" aria-hidden="true"></i>&nbsp;<span id="output_data"></span>&nbsp;<i class="fa fa-cutlery" aria-hidden="true"></i></div>
             <div id="output_data_container">
+              <!-- Food image -->
               <img id="img" class="img-responsive">
             </div>
           </div>
+          <!-- Text while predict -->
           <div id="loading">Recognizing . . .</div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Predict by Upload image -->
   <script type="text/javascript">
   var feedback = function (res) {
     if (res.success === true) {
       output_data.innerHTML = "";
+      // Hide output while predict
       output_div.style.display = 'none';
-      img.style.display = 'block';
+      // Display loadding text while predict
       loading.style.display = 'block';
+      // Display image by callback image url form api.imgur
       img.src = res.data.link;
+      // Set variable url by callback image url form api.imgur
       var url = "classify?imageurl="+res.data.link;
       $.get(url, function(data, status){
+        // Display output box and hide loadding text
+        img.style.display = 'block';
         output_div.style.display = 'block';
         loading.style.display = 'none';
+        // Translate label to Thai Language and Set label in output box
         switch(data.results) {
           case "friedrice":
           output_data.innerHTML = "ข้าวผัด";
@@ -75,12 +95,13 @@
     }
   };
   new Imgur({
-    // clientid: 'cc86a8de0e7c459',
+    // Client id form https://api.imgur.com/
     clientid: 'c07457a2d4a778f',
     callback: feedback
   });
   </script>
 
+  <!-- Main script -->
   <script src="js/main.js"></script>
 </body>
 </html>

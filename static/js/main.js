@@ -1,25 +1,36 @@
+// Set variable by ID
 var img = document.getElementById("img");
-img.style.display = 'none';
 var output_div = document.getElementById("output");
-output_div.style.display = 'none';
 var output_data = document.getElementById("output_data");
 var loading = document.getElementById("loading");
-loading.style.display = 'none';
-var btn = document.getElementById("btn_search");
-btn.addEventListener("click", classify);
 var img_url = document.getElementById("img_url");
+var btn = document.getElementById("btn_search");
 
-// Sent and Get data
+// Hide image, output box, loading text
+img.style.display = 'none';
+output_div.style.display = 'none';
+loading.style.display = 'none';
+
+// Check when click button "Go!" on image url
+btn.addEventListener("click", classify);
+
+// Predict by image url
 function classify() {
   output_data.innerHTML = "";
+  // Hide output while predict
   output_div.style.display = 'none';
-  img.style.display = 'block';
+  // Display loadding text while predict
   loading.style.display = 'block';
+  // Display image by image url input
   img.src = img_url.value;
+  // Set variable url by image url input
   var url = "classify?imageurl="+img_url.value;
   $.get(url, function(data, status){
+    // Display output box and hide loadding text
+    img.style.display = 'block';
     output_div.style.display = 'block';
     loading.style.display = 'none';
+    // Translate label to Thai Language and Set label in output box
     switch(data.results) {
       case "friedrice":
       output_data.innerHTML = "ข้าวผัด";

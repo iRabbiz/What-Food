@@ -14,6 +14,10 @@ git clone https://github.com/iRabbiz/What-Food
 
 ## How to Run
 ```
+cd What-Food
+```
+
+```
 python classify.py
 ```
 

@@ -12,6 +12,7 @@ from flask import Flask, jsonify, request, make_response
 import json
 import urllib
 
+# Model directory
 top_model_weights_path = 'assets/bottleneck_fc_model.h5'
 
 def predict(url):
@@ -59,6 +60,7 @@ def predict(url):
 
     label = inv_map[inID]
 
+    # Return predict label
     return label
 
 # Web App
@@ -66,14 +68,20 @@ app = Flask(__name__,static_url_path='')
 
 @app.route('/classify', methods=['GET'])
 def classify():
+    # Get image url form web
     image_url = request.args.get('imageurl')
+
+    # Use image url form web to predict
     results = predict(image_url)
+
+    # Return label to Web by json
     return jsonify({"results": results})
 
 @app.route('/', methods=['GET'])
 def root():
+    # Use web template in static folder
     return app.send_static_file('index.html')
 
 if __name__ == '__main__':
-    port = 8000 #the custom port you want
+    port = 8000 # the custom port you want
     app.run(host='127.0.0.1', port=port)
