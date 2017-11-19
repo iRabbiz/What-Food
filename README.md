@@ -1,5 +1,5 @@
 ## What Food WebApp
-Classify Thai Food image WebApp by Deep learning.
+Image Classification WebApp (Thai Food).
 
 ## Requirements
 * [Tensorflow](https://www.tensorflow.org)
