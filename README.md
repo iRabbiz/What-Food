@@ -2,9 +2,9 @@
 Classify Thai Food image Web by Deep learning.
 
 ## Requirements
-Tensorflow
+* [Tensorflow](https://www.tensorflow.org/i)
 
 ## Install
 
 ## How To
-""" python classify.py """
+''' python classify.py '''
