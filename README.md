@@ -6,7 +6,11 @@ Classify Thai Food image Web by Deep learning.
 * [Keras](https://keras.io/)
 * [Flask](http://flask.pocoo.org/)
 
-## Install
+## Getting Started!
+Clone This Project (In Terminal or Desktop App)
+```
+git clone https://github.com/iRabbiz/What-Food
+```
 
 ## How to Run
 ```
