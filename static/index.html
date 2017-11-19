@@ -1,0 +1,86 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/logo.png" sizes="16x16" type="image/png">
+  <title>What's food</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Itim" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link href="css/imgur.min.css" rel="stylesheet" media="screen">
+  <script type="text/javascript" src="js/imgur.min.js"></script>
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="header col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+        <img src="img/logo.png">
+        <h1>What's food</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="main_container col-sm-10 com-sm-offset-1 col-xs-10 col-xs-offset-1">
+        <div class="dropzone"></div>
+        <div style="font-size: 24px; text-align:center;">or</div>
+        <div class="input-group">
+          <input id ="img_url" type="text" class="form-control" placeholder="Enter Image Url ">
+          <span class="input-group-btn">
+            <button id="btn_search" class="btn btn-primary" type="button" style="background: #362a0f; border: 1px solid #362a0f;">Go!</button>
+          </span>
+        </div>
+        <div class="col-sm-10 col-sm-offset-1 col-xs-12">
+          <div id="output">
+            <div class="output_title"><i class="fa fa-cutlery" aria-hidden="true"></i>&nbsp;<span id="output_data"></span>&nbsp;<i class="fa fa-cutlery" aria-hidden="true"></i></div>
+            <div id="output_data_container">
+              <img id="img" class="img-responsive">
+            </div>
+          </div>
+          <div id="loading">Recognizing . . .</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  var feedback = function (res) {
+    if (res.success === true) {
+      output_data.innerHTML = "";
+      output_div.style.display = 'none';
+      img.style.display = 'block';
+      loading.style.display = 'block';
+      img.src = res.data.link;
+      var url = "classify?imageurl="+res.data.link;
+      $.get(url, function(data, status){
+        output_div.style.display = 'block';
+        loading.style.display = 'none';
+        switch(data.results) {
+          case "friedrice":
+          output_data.innerHTML = "ข้าวผัด";
+          break;
+          case "greencurry":
+          output_data.innerHTML = "แกงเขียวหวาน";
+          break;
+          case "papayasalad":
+          output_data.innerHTML = "ส้มตำ";
+          break;
+          case "tomyum":
+          output_data.innerHTML = "ต้มยำ";
+          break;
+        }
+      });
+    }
+  };
+  new Imgur({
+    // clientid: 'cc86a8de0e7c459',
+    clientid: 'c07457a2d4a778f',
+    callback: feedback
+  });
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

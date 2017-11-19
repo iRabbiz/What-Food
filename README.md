@@ -1,5 +1,5 @@
-## What Food Web
-Classify Thai Food image Web by Deep learning.
+## What Food WebApp
+Classify Thai Food image WebApp by Deep learning.
 
 ## Requirements
 * [Tensorflow](https://www.tensorflow.org)
