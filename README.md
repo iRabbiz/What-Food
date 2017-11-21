@@ -13,6 +13,7 @@ git clone https://github.com/iRabbiz/What-Food
 ```
 
 ## How to Run
+Install [Tensorflow](https://www.tensorflow.org), [Keras](https://keras.io/), [Flask](http://flask.pocoo.org/) before Run.
 ```
 cd What-Food
 ```
