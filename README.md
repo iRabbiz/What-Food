@@ -1,6 +1,9 @@
 ## What Food WebApp
 Image Classification WebApp (Thai Food).
 
+### Docs
+[Docs](https://github.com/iRabbiz/What-Food/tree/master/docs)
+
 ## Requirements
 * [Tensorflow](https://www.tensorflow.org)
 * [Keras](https://keras.io/)
