@@ -12,12 +12,16 @@ import math
 # dimensions of our images.
 img_width, img_height = 224, 224
 
+# Model name
 top_model_weights_path = 'bottleneck_fc_model.h5'
+
+# Folder name for train and validation
 train_data_dir = 'train'
 validation_data_dir = 'validation'
 
 # number of epochs to train top model
 epochs = 50
+
 # batch size used by flow_from_directory and predict_generator
 batch_size = 4
 
@@ -136,7 +140,6 @@ def train_top_model():
     plt.figure(1)
 
     # summarize history for accuracy
-
     plt.subplot(211)
     plt.plot(history.history['acc'])
     plt.plot(history.history['val_acc'])
@@ -146,7 +149,6 @@ def train_top_model():
     plt.legend(['train', 'test'], loc='upper left')
 
     # summarize history for loss
-
     plt.subplot(212)
     plt.plot(history.history['loss'])
     plt.plot(history.history['val_loss'])
